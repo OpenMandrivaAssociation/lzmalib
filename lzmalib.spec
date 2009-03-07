@@ -5,11 +5,13 @@
 Summary: 	A thin wrapper library of LZMA
 Name: 		lzmalib
 Version: 	0.0.1
-Release: 	%mkrel 1
+Release: 	%mkrel 2
 Group: 		System/Libraries
 License: 	LGPL
 URL: 		http://tokyocabinet.sourceforge.net/misc/
 Source0: 	http://tokyocabinet.sourceforge.net/misc/%{name}-%{version}.tar.gz
+Patch0:		lzmalib-0.0.1-format_not_a_string_literal_and_no_format_arguments.diff
+Patch1:		lzmalib-0.0.1-new_libname_fix.diff
 BuildRequires:	chrpath
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
@@ -45,8 +47,13 @@ applications which will use %{name}.
 %prep
 
 %setup -q -n %{name}-%{version}
+%patch0 -p0
+%patch1 -p1
 
 %build
+rm configure
+autoconf
+
 %configure2_5x
 
 %make \
@@ -80,11 +87,10 @@ rm -rf %{buildroot}
 %files -n %{libname}
 %defattr(-,root,root,755)
 %doc README
-%{_libdir}/lib*.so.*
+%{_libdir}/lib*.so.%{major}*
 
 %files -n %{develname}
 %defattr(-,root,root,755)
 %{_includedir}/*.h
 %{_libdir}/lib*.so
 %{_libdir}/lib*.a
-
