@@ -1,0 +1,91 @@
+diff -Naur lzmalib-0.0.1/configure.in lzmalib-0.0.1.oden/configure.in
+--- lzmalib-0.0.1/configure.in	2008-07-23 08:28:12.000000000 +0200
++++ lzmalib-0.0.1.oden/configure.in	2009-03-07 17:01:58.000000000 +0100
+@@ -15,7 +15,7 @@
+ 
+ # Targets
+ MYHEADERFILES="lzmalib.h"
+-MYLIBRARYFILES="liblzma.a"
++MYLIBRARYFILES="liblzmalib.a"
+ MYLIBOBJFILES="mylib.o LzmaBench.o LzmaRam.o LzmaRamDecode.o LzmaDecode.o BranchX86.o LZMADecoder.o LZMAEncoder.o LZInWindow.o LZOutWindow.o RangeCoderBit.o InBuffer.o OutBuffer.o FileStreams.o StreamUtils.o Alloc.o C_FileIO.o CommandLineParser.o CRC.o String.o StringConvert.o StringToInt.o Vector.o"
+ MYCOMMANDFILES="lzmacmd"
+ MYVPATH="`find . -type d | tr '\n' ':'`"
+@@ -44,14 +44,14 @@
+ # Shared libraries
+ if uname | grep Darwin >/dev/null
+ then
+-  MYLIBRARYFILES="$MYLIBRARYFILES liblzma.$MYLIBVER.$MYLIBREV.0.dylib"
+-  MYLIBRARYFILES="$MYLIBRARYFILES liblzma.$MYLIBVER.dylib"
+-  MYLIBRARYFILES="$MYLIBRARYFILES liblzma.dylib"
++  MYLIBRARYFILES="$MYLIBRARYFILES liblzmalib.$MYLIBVER.$MYLIBREV.0.dylib"
++  MYLIBRARYFILES="$MYLIBRARYFILES liblzmalib.$MYLIBVER.dylib"
++  MYLIBRARYFILES="$MYLIBRARYFILES liblzmalib.dylib"
+   MYLDLIBPATHENV="DYLD_LIBRARY_PATH"
+ else
+-  MYLIBRARYFILES="$MYLIBRARYFILES liblzma.so.$MYLIBVER.$MYLIBREV.0"
+-  MYLIBRARYFILES="$MYLIBRARYFILES liblzma.so.$MYLIBVER"
+-  MYLIBRARYFILES="$MYLIBRARYFILES liblzma.so"
++  MYLIBRARYFILES="$MYLIBRARYFILES liblzmalib.so.$MYLIBVER.$MYLIBREV.0"
++  MYLIBRARYFILES="$MYLIBRARYFILES liblzmalib.so.$MYLIBVER"
++  MYLIBRARYFILES="$MYLIBRARYFILES liblzmalib.so"
+ fi
+ 
+ 
+diff -Naur lzmalib-0.0.1/Makefile.in lzmalib-0.0.1.oden/Makefile.in
+--- lzmalib-0.0.1/Makefile.in	2008-07-23 10:40:09.000000000 +0200
++++ lzmalib-0.0.1.oden/Makefile.in	2009-03-07 17:01:17.000000000 +0100
+@@ -120,40 +120,40 @@
+ #================================================================
+ 
+ 
+-liblzma.a : $(LIBOBJFILES)
++liblzmalib.a : $(LIBOBJFILES)
+ 	$(AR) $(ARFLAGS) $@ $(LIBOBJFILES)
+ 
+ 
+-liblzma.so.$(LIBVER).$(LIBREV).0 : $(LIBOBJFILES)
+-	$(CC) -shared -Wl,-soname,liblzma.so.$(LIBVER) -o $@ $(LIBOBJFILES) \
++liblzmalib.so.$(LIBVER).$(LIBREV).0 : $(LIBOBJFILES)
++	$(CC) -shared -Wl,-soname,liblzmalib.so.$(LIBVER) -o $@ $(LIBOBJFILES) \
+ 	  $(LDFLAGS) $(LIBS)
+ 
+ 
+-liblzma.so.$(LIBVER) : liblzma.so.$(LIBVER).$(LIBREV).0
+-	ln -f -s liblzma.so.$(LIBVER).$(LIBREV).0 $@
++liblzmalib.so.$(LIBVER) : liblzmalib.so.$(LIBVER).$(LIBREV).0
++	ln -f -s liblzmalib.so.$(LIBVER).$(LIBREV).0 $@
+ 
+ 
+-liblzma.so : liblzma.so.$(LIBVER).$(LIBREV).0
+-	ln -f -s liblzma.so.$(LIBVER).$(LIBREV).0 $@
++liblzmalib.so : liblzmalib.so.$(LIBVER).$(LIBREV).0
++	ln -f -s liblzmalib.so.$(LIBVER).$(LIBREV).0 $@
+ 
+ 
+-liblzma.$(LIBVER).$(LIBREV).0.dylib : $(LIBOBJFILES)
++liblzmalib.$(LIBVER).$(LIBREV).0.dylib : $(LIBOBJFILES)
+ 	$(CC) -dynamiclib -o $@ \
+-	  -install_name $(LIBDIR)/liblzma.$(LIBVER).dylib \
++	  -install_name $(LIBDIR)/liblzmalib.$(LIBVER).dylib \
+ 	  -current_version $(LIBVER).$(LIBREV).0 -compatibility_version $(LIBVER) \
+ 	  $(LIBOBJFILES) $(LDFLAGS) $(LIBS)
+ 
+ 
+-liblzma.$(LIBVER).dylib : liblzma.$(LIBVER).$(LIBREV).0.dylib
+-	ln -f -s liblzma.$(LIBVER).$(LIBREV).0.dylib $@
++liblzmalib.$(LIBVER).dylib : liblzmalib.$(LIBVER).$(LIBREV).0.dylib
++	ln -f -s liblzmalib.$(LIBVER).$(LIBREV).0.dylib $@
+ 
+ 
+-liblzma.dylib : liblzma.$(LIBVER).$(LIBREV).0.dylib
+-	ln -f -s liblzma.$(LIBVER).$(LIBREV).0.dylib $@
++liblzmalib.dylib : liblzmalib.$(LIBVER).$(LIBREV).0.dylib
++	ln -f -s liblzmalib.$(LIBVER).$(LIBREV).0.dylib $@
+ 
+ 
+ lzmacmd : lzmacmd.o $(LIBRARYFILES)
+-	$(LDENV) $(CC) $(CFLAGS) -o $@ $< $(LDFLAGS) -llzma $(LIBS)
++	$(LDENV) $(CC) $(CFLAGS) -o $@ $< $(LDFLAGS) -llzmalib $(LIBS)
+ 
+ 
+ mylib.o : lzmalib.h
