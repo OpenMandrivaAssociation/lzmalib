@@ -5,7 +5,7 @@
 Summary: 	A thin wrapper library of LZMA
 Name: 		lzmalib
 Version: 	0.0.1
-Release: 	%mkrel 6
+Release: 	%mkrel 7
 Group: 		System/Libraries
 License: 	LGPL
 URL: 		http://tokyocabinet.sourceforge.net/misc/
@@ -94,3 +94,35 @@ rm -rf %{buildroot}
 %{_includedir}/*.h
 %{_libdir}/lib*.so
 %{_libdir}/lib*.a
+
+
+%changelog
+* Wed May 04 2011 Oden Eriksson <oeriksson@mandriva.com> 0.0.1-6mdv2011.0
++ Revision: 666138
+- mass rebuild
+
+* Fri Dec 03 2010 Oden Eriksson <oeriksson@mandriva.com> 0.0.1-5mdv2011.0
++ Revision: 606453
+- rebuild
+
+* Sun Mar 14 2010 Oden Eriksson <oeriksson@mandriva.com> 0.0.1-4mdv2010.1
++ Revision: 519036
+- rebuild
+
+* Mon Sep 14 2009 Thierry Vignaud <tv@mandriva.org> 0.0.1-3mdv2010.0
++ Revision: 439694
+- rebuild
+
+* Sat Mar 07 2009 Oden Eriksson <oeriksson@mandriva.com> 0.0.1-2mdv2009.1
++ Revision: 351849
+- fix build with -Werror=format-security
+- rename the built library to prevent file clash with system lzma lib,
+  link against -llzmalib for now on
+
+* Thu Jul 31 2008 Oden Eriksson <oeriksson@mandriva.com> 0.0.1-1mdv2009.0
++ Revision: 258754
+- import lzmalib
+
+
+* Thu Jul 31 2008 Oden Eriksson <oeriksson@mandriva.com> 0.0.1-1mdv2009.0
+- initial Mandriva package
