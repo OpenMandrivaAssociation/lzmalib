@@ -1,5 +1,5 @@
---- 7zip/Compress/LZMA_Alone/LzmaBench.cpp	2008-07-23 08:23:40.000000000 +0200
-+++ 7zip/Compress/LZMA_Alone/LzmaBench.cpp.oden	2009-03-07 17:08:15.000000000 +0100
+--- ./7zip/Compress/LZMA_Alone/LzmaBench.cpp	2008-07-23 08:23:40.000000000 +0200
++++ ./7zip/Compress/LZMA_Alone/LzmaBench.cpp.oden	2009-03-07 17:08:15.000000000 +0100
 @@ -365,7 +365,7 @@ static void ThrowError(FILE *f, HRESULT 
    if (result == E_OUTOFMEMORY)
      fprintf(f, "Can not allocate memory");
