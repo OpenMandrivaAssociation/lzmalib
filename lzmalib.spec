@@ -5,7 +5,7 @@
 Summary:	A thin wrapper library of LZMA
 Name:		lzmalib
 Version:	0.0.1
-Release:	9
+Release:	10
 Group:		System/Libraries
 License:	LGPLv2
 Url:		http://tokyocabinet.sourceforge.net/misc/
