@@ -8,7 +8,7 @@ Version:	0.0.1
 Release:	18
 Group:		System/Libraries
 License:	LGPLv2
-Url:		http://tokyocabinet.sourceforge.net/misc/
+Url:		https://tokyocabinet.sourceforge.net/misc/
 Source0:	http://tokyocabinet.sourceforge.net/misc/%{name}-%{version}.tar.gz
 Patch0:		lzmalib-0.0.1-format_not_a_string_literal_and_no_format_arguments.diff
 Patch1:		lzmalib-0.0.1-new_libname_fix.diff
